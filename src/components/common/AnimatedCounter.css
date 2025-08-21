@@ -1,0 +1,225 @@
+/**
+ * Animated Counter Styles
+ * Module 2, Lesson 4: UI Polish and Animations
+ * Smooth number transitions with visual feedback
+ */
+
+.animated-counter {
+  display: inline-flex;
+  align-items: baseline;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  transition: color 0.3s ease;
+}
+
+.animated-counter.animating {
+  animation: counterPulse 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes counterPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.counter-prefix,
+.counter-suffix {
+  opacity: 0.8;
+  font-size: 0.9em;
+  margin: 0 0.1em;
+}
+
+.counter-value {
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+
+/* Digit flip animation */
+.counter-value::after {
+  content: attr(data-value);
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transform: translateY(-100%);
+  animation: digitFlip 0.3s ease-out;
+}
+
+@keyframes digitFlip {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+/* Color variants */
+.animated-counter.success {
+  color: var(--color-success);
+}
+
+.animated-counter.warning {
+  color: var(--color-warning);
+}
+
+.animated-counter.danger {
+  color: var(--color-danger);
+}
+
+.animated-counter.info {
+  color: var(--color-info);
+}
+
+/* Size variants */
+.animated-counter.small {
+  font-size: 0.875rem;
+}
+
+.animated-counter.medium {
+  font-size: 1rem;
+}
+
+.animated-counter.large {
+  font-size: 1.5rem;
+}
+
+.animated-counter.xlarge {
+  font-size: 2rem;
+}
+
+/* Loading state */
+.animated-counter.loading {
+  opacity: 0.5;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Glow effect on change */
+.animated-counter.glow {
+  text-shadow: 0 0 10px currentColor;
+  animation: glow 0.5s ease-out;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 0 currentColor;
+  }
+  50% {
+    text-shadow: 0 0 20px currentColor;
+  }
+  100% {
+    text-shadow: 0 0 0 currentColor;
+  }
+}
+
+/* Bounce effect */
+.animated-counter.bounce {
+  animation: bounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.2);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Roll effect */
+.animated-counter.roll .counter-value {
+  display: inline-block;
+  animation: roll 0.5s ease-out;
+}
+
+@keyframes roll {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+/* Slide up effect */
+.animated-counter.slide-up .counter-value {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Zoom effect */
+.animated-counter.zoom {
+  animation: zoomIn 0.5s ease-out;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Gradient text effect */
+.animated-counter.gradient .counter-value {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animated-counter,
+  .animated-counter * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

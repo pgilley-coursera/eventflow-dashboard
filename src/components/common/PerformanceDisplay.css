@@ -1,0 +1,153 @@
+/**
+ * PerformanceDisplay Component Styles
+ * Module 3: Performance Optimization
+ */
+
+.performance-display {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+}
+
+.performance-metrics {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.performance-metric {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--bg-secondary);
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.performance-metric:hover {
+  background: var(--bg-tertiary);
+  transform: translateY(-1px);
+}
+
+.metric-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.metric-value {
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.metric-avg,
+.metric-percentage {
+  color: var(--text-tertiary);
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
+}
+
+.performance-metric.warning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  animation: pulse-warning 2s ease-in-out infinite;
+}
+
+@keyframes pulse-warning {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.performance-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.rating-label {
+  opacity: 0.9;
+}
+
+.rating-value {
+  font-weight: 700;
+}
+
+.performance-sparkline {
+  height: 20px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.performance-sparkline:hover {
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .performance-display {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .performance-metrics {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .performance-metric {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .metric-avg,
+  .metric-percentage {
+    display: none;
+  }
+  
+  .performance-sparkline {
+    display: none;
+  }
+}
+
+/* Dark mode specific styles */
+[data-theme="dark"] .performance-metric {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .performance-metric:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .performance-metric.warning {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+/* Loading state */
+.performance-display.loading .metric-value {
+  opacity: 0.5;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
