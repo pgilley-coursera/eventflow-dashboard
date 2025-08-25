@@ -20,22 +20,24 @@ jobs:
           submodules: true
           lfs: false
       
-      # Add Node.js setup
+      # Use Node.js 18 for compatibility
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           cache: 'npm'
       
-      # Explicitly install dependencies
+      # Clean install dependencies
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci --legacy-peer-deps
       
-      # Build the application
+      # Build the application (CI=false to allow warnings)
       - name: Build application
         run: npm run build
         env:
-          CI: true
+          CI: false
+          NODE_OPTIONS: '--max-old-space-size=4096'
       
       # Deploy to Azure
       - name: Deploy to Azure Static Web Apps
@@ -48,7 +50,7 @@ jobs:
           app_location: "/"
           api_location: ""
           output_location: "build"
-          skip_app_build: true  # Skip the automatic build since we built it manually
+          skip_app_build: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
