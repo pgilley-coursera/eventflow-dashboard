@@ -461,3 +461,33 @@
     transform: rotate(360deg);
   }
 }
+
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.dashboard p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stats-grid > div {
+  padding: 20px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  font-size: 18px;
+  text-align: center;
+}
