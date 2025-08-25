@@ -91,6 +91,7 @@ jobs:
           #   NODE_VERSION=18
           #   REACT_APP_VERSION=${{ github.sha }}
 
+          
   close_pull_request_job:
     # This job runs when a PR is closed
     # It cleans up the preview environment

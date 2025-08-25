@@ -4,7 +4,7 @@ import React from 'react';
 function Dashboard() {
   return (
     <div className="dashboard">
-      <h1>EventFlow Analytics - Live Dashboard</h1>
+      <h1>EventFlow Analytics</h1>
       <p>Session tracking and analytics dashboard</p>
       <div className="stats-grid">
         <div>Total Sessions: 12</div>
